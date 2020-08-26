@@ -60,13 +60,13 @@ public class CustomersBean {
     order = new Orders();
   }
 
-  public void updateCustomer(){
-    Customer customerToEdit = (Customer)datatableCustomers.getRowData();
+  public void updateCustomer() {
+    Customer customerToEdit = (Customer) datatableCustomers.getRowData();
     this.customer = customerToEdit;
   }
 
-  public void deleteCustomer(){
-    Customer customerToDelete = (Customer)datatableCustomers.getRowData();
+  public void deleteCustomer() {
+    Customer customerToDelete = (Customer) datatableCustomers.getRowData();
     Call<Void> deleteCustomer = customerResource.delete(customerToDelete.getId());
     try {
       deleteCustomer.execute();
@@ -100,17 +100,34 @@ public class CustomersBean {
     }
   }
 
+  public HtmlDataTable getDatatableCustomers() {
+    return datatableCustomers;
+  }
+
+  public void setDatatableCustomers(HtmlDataTable datatableCustomers) {
+    this.datatableCustomers = datatableCustomers;
+  }
 
   public void save() {
-    Call<Void> save = customerResource.save(this.customer);
-    try {
-      save.execute();
+    if (this.customer.getId() != null || this.customer.getId() != 0L) {
+      Call<Void> update = customerResource.update(this.customer.getId(), this.customer);
+      try {
+        update.execute();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
       customer = new Customer();
       this.loadCustomers();
-    } catch (IOException e) {
-      e.printStackTrace();
+    } else {
+      Call<Void> save = customerResource.save(this.customer);
+      try {
+        save.execute();
+        customer = new Customer();
+        this.loadCustomers();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
-
   }
 
   public List<Orders> getOrders() {
