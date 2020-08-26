@@ -70,6 +70,7 @@ public class CustomersBean {
     Call<Void> deleteCustomer = customerResource.delete(customerToDelete.getId());
     try {
       deleteCustomer.execute();
+      loadCustomers();
     } catch (IOException e) {
       e.printStackTrace();
     }
