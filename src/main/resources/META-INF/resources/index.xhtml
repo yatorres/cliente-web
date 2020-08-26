@@ -23,24 +23,26 @@
       <h:commandButton action="#{customersBean.save}" value="Save"/>
     </h:form>
 
-    <h:dataTable value="#{customersBean.customers}" var="customer" binding="#{customersBean.datatableCustomers}">
-      <h:column>
-        <f:facet name="header">Name</f:facet>
-        #{customer.name}
-      </h:column>
-      <h:column>
-        <f:facet name="header">Surname</f:facet>
-        #{customer.surname}
-      </h:column>
-      <h:column>
-        <f:facet name="header">Edit</f:facet>
-        <h:commandButton value="Edit" action="#{customersBean.updateCustomer}"/>
-      </h:column>
-      <h:column>
-        <f:facet name="header">Delete</f:facet>
-        <h:commandButton value="Edit" action="#{customersBean.deleteCustomer}"/>
-      </h:column>
-    </h:dataTable>
+    <h:form>
+      <h:dataTable value="#{customersBean.customers}" var="customer" binding="#{customersBean.datatableCustomers}">
+        <h:column>
+          <f:facet name="header">Name</f:facet>
+          #{customer.name}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Surname</f:facet>
+          #{customer.surname}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Edit</f:facet>
+          <h:commandButton value="Edit" action="#{customersBean.updateCustomer}"/>
+        </h:column>
+        <h:column>
+          <f:facet name="header">Delete</f:facet>
+          <h:commandButton value="Edit" action="#{customersBean.deleteCustomer}"/>
+        </h:column>
+      </h:dataTable>
+    </h:form>
 
     <hr/>
     <h:outputText value="ORDERS"/>
