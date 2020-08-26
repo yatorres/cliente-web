@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+  <h:head>
+    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+  </h:head>
+
+  <h:body>
+
+    <h:outputText value="CUSTOMERS"/>
+    <h:form>
+      <h:panelGrid>
+        <h:outputText value="Name"/>
+        <h:inputText value="#{customersBean.customer.name}"/>
+        <h:outputText value="Surname"/>
+        <h:inputText value="#{customersBean.customer.surname}"/>
+      </h:panelGrid>
+      <h:commandButton action="#{customersBean.save}" value="Save"/>
+    </h:form>
+
+    <h:dataTable value="#{customersBean.customers}" var="customer">
+      <h:column>
+        <!-- column header -->
+        <f:facet name="header">Name</f:facet>
+        <!-- row record -->
+        #{customer.name}
+      </h:column>
+      <h:column>
+        <!-- column header -->
+        <f:facet name="header">Surname</f:facet>
+        <!-- row record -->
+        #{customer.surname}
+      </h:column>
+    </h:dataTable>
+
+    <hr/>
+    <h:outputText value="ORDERS"/>
+    <h:form>
+      <h:panelGrid>
+        <h:outputText value="Customer"/>
+        <h:panelGrid>
+          <h:selectOneMenu value="#{customersBean.customerId}">
+            <f:selectItems value="#{customersBean.customersList}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <h:commandButton action="#{customersBean.loadOrders}" value="Load Orders"/>
+        <h:outputText value="Price"/>
+        <h:inputText value="#{customersBean.order.price}"/>
+        <h:outputText value="Item"/>
+        <h:inputText value="#{customersBean.order.item}"/>
+      </h:panelGrid>
+      <h:commandButton action="#{customersBean.saveOrder}" value="Save"/>
+    </h:form>
+
+    <h:dataTable value="#{customersBean.orders}" var="order">
+      <h:column>
+        <f:facet name="header">Price</f:facet>
+        #{order.price}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Item</f:facet>
+        #{order.item}
+      </h:column>
+    </h:dataTable>
+
+  </h:body>
+</f:view>
+</html>

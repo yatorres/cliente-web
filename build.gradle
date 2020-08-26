@@ -1,0 +1,17 @@
+plugins {
+    id "org.joinfaces" version "4.3.0"
+}
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  compile "org.joinfaces:jsf-spring-boot-starter"
+  compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
+  compile "com.squareup.retrofit2:converter-gson:2.3.0"
+  testCompile "org.springframework.boot:spring-boot-starter-test"
+}
