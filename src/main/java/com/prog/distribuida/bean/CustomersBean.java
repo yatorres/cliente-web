@@ -111,7 +111,7 @@ public class CustomersBean {
   }
 
   public void save() {
-    if (this.customer.getId() != null || this.customer.getId() != 0L) {
+    if (this.getCustomer().getId() != null || this.getCustomer().getId() != 0L) {
       Call<Void> update = customerResource.update(this.customer.getId(), this.customer);
       try {
         update.execute();
@@ -163,6 +163,9 @@ public class CustomersBean {
   }
 
   public Customer getCustomer() {
+    if(customer == null){
+      customer = new Customer();
+    }
     return customer;
   }
 
