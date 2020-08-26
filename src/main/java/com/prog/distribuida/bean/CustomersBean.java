@@ -115,7 +115,7 @@ public class CustomersBean {
     System.out.println(this.getCustomer());
     System.out.println(this.getCustomer().getId());
     System.out.println("===========================");
-    if (this.getCustomer() != null && (this.getCustomer().getId() != null || this.getCustomer().getId() != 0L)) {
+    if (this.getCustomer() != null && this.getCustomer().getId() != null) {
       Call<Void> update = customerResource.update(this.customer.getId(), this.customer);
       try {
         update.execute();
