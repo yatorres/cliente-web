@@ -7,6 +7,7 @@ import com.prog.distribuida.orders.Orders;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component("customersBean")
-@RequestScope
+@SessionScope
 public class CustomersBean {
 
   private List<Customer> customers;
