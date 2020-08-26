@@ -23,18 +23,22 @@
       <h:commandButton action="#{customersBean.save}" value="Save"/>
     </h:form>
 
-    <h:dataTable value="#{customersBean.customers}" var="customer">
+    <h:dataTable value="#{customersBean.customers}" var="customer" binding="#{customersBean.datatableCustomers}">
       <h:column>
-        <!-- column header -->
         <f:facet name="header">Name</f:facet>
-        <!-- row record -->
         #{customer.name}
       </h:column>
       <h:column>
-        <!-- column header -->
         <f:facet name="header">Surname</f:facet>
-        <!-- row record -->
         #{customer.surname}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Edit</f:facet>
+        <h:commandButon value="Edit" action="#{customersBean.updateCustomer}"/>
+      </h:column>
+      <h:column>
+        <f:facet name="header">Delete</f:facet>
+        <h:commandButon value="Edit" action="#{customersBean.deleteCustomer}"/>
       </h:column>
     </h:dataTable>
 

@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.SelectItem;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class CustomersBean {
   private OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
   private Long customerId;
   private List<SelectItem> customersList;
+  private HtmlDataTable datatableCustomers;
 
   public List<SelectItem> getCustomersList() {
     return customersList;
@@ -57,6 +59,22 @@ public class CustomersBean {
     customer = new Customer();
     order = new Orders();
   }
+
+  public void updateCustomer(){
+    Customer customerToEdit = (Customer)datatableCustomers.getRowData();
+    this.customer = customerToEdit;
+  }
+
+  public void deleteCustomer(){
+    Customer customerToDelete = (Customer)datatableCustomers.getRowData();
+    Call<Void> deleteCustomer = customerResource.delete(customerToDelete.getId());
+    try {
+      deleteCustomer.execute();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 
   public void saveOrder() {
     this.order.setCustomerId(this.customerId);
