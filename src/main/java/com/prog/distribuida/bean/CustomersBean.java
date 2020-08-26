@@ -115,11 +115,11 @@ public class CustomersBean {
       Call<Void> update = customerResource.update(this.customer.getId(), this.customer);
       try {
         update.execute();
+        customer = new Customer();
+        this.loadCustomers();
       } catch (IOException e) {
         e.printStackTrace();
       }
-      customer = new Customer();
-      this.loadCustomers();
     } else {
       Call<Void> save = customerResource.save(this.customer);
       try {
